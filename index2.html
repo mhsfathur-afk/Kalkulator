@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .calculator{
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px black;
+        width: 300px;
+    }
+    input[type="text"]{
+        width: 100%;
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px black;
+        text-align: right;
+        font-size: 18px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+    .btns{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    button{
+        height: 50px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background: #f0f0f0;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    button:hover{
+        background-color: #e5e4e4;
+    }
+    button.operator{
+        background-color: orange;
+        color: white;
+    }
+    button.operator:hover{
+        background-color: rgb(191, 171, 133);
+        color: black;
+    }
+    button.equal{
+        background-color: greenyellow;
+        grid-column: span 2;
+    }
+    button.clear{
+        background-color: red;
+        color: white;
+        grid-column: span 3;
+    }
+</style>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" >
+        <div class="btns">
+            <button onclick="append('7')">7</button>
+            <button onclick="append('8')">8</button>
+            <button onclick="append('9')">9</button>
+            <button class="operator" onclick="append('/')">/</button>
+
+            <button onclick="append('4')">4</button>
+            <button onclick="append('5')">5</button>
+            <button onclick="append('6')">6</button>
+            <button class="operator" onclick="append('*')">X</button>
+
+            <button onclick="append('1')">1</button>
+            <button onclick="append('2')">2</button>
+            <button onclick="append('3')">3</button>
+            <button class="operator" onclick="append('-')">-</button>
+
+
+            <button onclick="append('0')">0</button>
+            <button onclick="append('.')">.</button>
+            <button class="equal" onclick="calculate()" >=</button>
+            <button class="operator" onclick="append('+')">+</button>
+            <button  class="clear" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
+    <script>
+        function append(value){
+            document.getElementById('display').value += value;
+        }
+        function clearDisplay(){
+            document.getElementById('display').value = "";
+        }
+        function calculate(){
+            try{
+                const data = document.getElementById('display').value;
+                const result = eval(data);
+                document.getElementById('display').value = result;
+            }catch(error){
+                alert ("Perhitungan Tidak Valid" + error);
+            }
+        }
+    </script>
+</body>
+</html>
